@@ -17,13 +17,18 @@ public class Student {
 
     private Integer stuId;
 
+    private Integer classId;
+
     public Student() {
     }
 
-    public Student(String name, Integer age, String sex, Integer stuId) {
+    public Student(String name, Integer age, String sex, Integer stuId, Integer classId) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.stuId = stuId;
+        this.classId = classId;
     }
+
+
 }
