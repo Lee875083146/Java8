@@ -1,0 +1,16 @@
+
+spring:
+  datasource:
+    #    name:
+    username: root
+    password: 8750
+#    url: jdbc:mysql://127.0.0.1:3306/myblog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+
+
+logging:
+  config: classpath:logback-spring.xml
+
+mybatis-plus:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
