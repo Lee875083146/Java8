@@ -1,6 +1,7 @@
 package com.nopainanymore.java8.Stream;
 
 import com.google.gson.Gson;
+import com.nopainanymore.java8.entity.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.nopainanymore.java8.entity.Student.FEMALE;
+import static com.nopainanymore.java8.entity.Student.MALE;
 
 /**
  * @author lw875
@@ -19,9 +23,7 @@ public class StreamOperation {
 
     private static final Gson gson = new Gson();
 
-    private final static String MALE = "男";
 
-    private final static String FEMALE = "女";
 
 
     public static void main(String[] args) {

@@ -1,13 +1,21 @@
-package com.nopainanymore.java8.Stream;
+package com.nopainanymore.java8.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.util.Optional;
 
 /**
  * @author lw875
  * @create 2019-03-13 23:31
  */
 @Data
+@Accessors(chain = true)
 public class Student {
+
+    public final static String MALE = "男";
+
+    public final static String FEMALE = "女";
 
     private String name;
 
@@ -18,6 +26,8 @@ public class Student {
     private Integer stuId;
 
     private Integer classId;
+
+    private Pet pet;
 
     public Student() {
     }

@@ -3,6 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <package name="com.cn.lw.blog.entity"/>
+        <package name="com.nopainanymore.java8.entity"/>
     </typeAliases>
 </configuration>
