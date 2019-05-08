@@ -1,4 +1,4 @@
-package com.nopainanymore.java8.Stream;
+package com.nopainanymore.java8.stream;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

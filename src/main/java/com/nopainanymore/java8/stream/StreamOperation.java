@@ -1,4 +1,4 @@
-package com.nopainanymore.java8.Stream;
+package com.nopainanymore.java8.stream;
 
 import com.google.gson.Gson;
 import com.nopainanymore.java8.entity.Student;
