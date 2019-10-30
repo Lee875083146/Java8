@@ -4,11 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 /**
  * java8: Client
@@ -323,6 +325,16 @@ public class Client {
                 .filter(Page.distinctByKey(page -> page.getClient() + page.getPageURL() + page.getPageName()))
                 .collect(groupingBy(Page::getClient, Collectors.toMap(Page::getPageURL, Page::getPageName)));
         log.info("Client- main- method2 {}", gson.toJson(staticMethod));
+
+        Map<String, List<Page>> stringListMap = pageList.stream()
+                .collect(groupingBy(Page::getAppName, collectingAndThen(Collectors.toList(), Collections::unmodifiableList)));
+
+        Map<String, List<String>> appNamePageUrl = pageList.stream()
+                .collect(groupingBy(Page::getAppName, mapping(Page::getPageURL, toList())));
+
+        HashSet<PageMeta> metaHashSet = pageList.stream()
+                .map(PageMeta::new)
+                .collect(toCollection(HashSet::new));
 
 
     }
