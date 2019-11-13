@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.nopainanymore.java8.entity.Student.FEMALE;
@@ -22,8 +23,6 @@ public class StreamOperation {
     private static final Logger log = LoggerFactory.getLogger(StreamOperation.class);
 
     private static final Gson gson = new Gson();
-
-
 
 
     public static void main(String[] args) {
@@ -48,7 +47,8 @@ public class StreamOperation {
 
 //        limit(studentList);
 
-        skip(studentList);
+//        skip(studentList);
+        anyMatch(studentList);
     }
 
     private static List<Student> generateStudentList(Integer classId) {
@@ -56,13 +56,20 @@ public class StreamOperation {
         for (int i = 1; i < 5; i++) {
             Student student;
             if (i % 2 == 0) {
-                student = new Student("a" + String.valueOf(i), 20, MALE, 1400 + i, classId);
+                student = new Student("a" + i, 20, MALE, 1400 + i, classId);
             } else {
-                student = new Student("a" + String.valueOf(i), 21, FEMALE, 1400 + i, classId);
+                student = new Student("a" + i, 21, FEMALE, 1400 + i, classId);
             }
             studentList.add(student);
         }
         return studentList;
+    }
+
+    private static void toArray(List<Student> studentList) {
+        Integer[] classIdArray = studentList.stream()
+                .map(Student::getClassId)
+                .distinct()
+                .toArray(Integer[]::new);
     }
 
     private static void filter(List<Student> studentList) {
@@ -72,6 +79,12 @@ public class StreamOperation {
                 .filter(student -> MALE.equals(student.getSex()))
                 .collect(Collectors.toList());
         log.info("StreamOperation- filter- after:{}", gson.toJson(afterFilter));
+
+
+        List<Student> nameEquals = studentList.stream()
+                .filter(student -> "a1".equals(student.getName()))
+                .collect(Collectors.toList());
+        log.info("StreamOperation- anyMatch- nameEquals:{}", gson.toJson(nameEquals));
     }
 
     private static void map(List<Student> studentList) {
@@ -150,5 +163,22 @@ public class StreamOperation {
                 .collect(Collectors.toList());
         log.info("StreamOperation- skip- after:{}", gson.toJson(skip));
     }
+
+    private static void anyMatch(List<Student> students) {
+        boolean anyMatch = students
+                .stream()
+                .anyMatch(student -> "a1".equals(student.getName()));
+        log.info("StreamOperation- anyMatch- amyMatch :{}", anyMatch);
+
+    }
+
+    private static void findAny(List<Student> students) {
+        Optional<Student> any = students
+                .stream()
+                .filter(student -> "a1".equals(student.getName()))
+                .findAny();
+        log.info("StreamOperation- anyMatch- any:{}", any.orElse(new Student()));
+    }
+
 
 }
