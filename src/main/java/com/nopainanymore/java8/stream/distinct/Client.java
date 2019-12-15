@@ -4,10 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
@@ -336,6 +334,12 @@ public class Client {
                 .map(PageMeta::new)
                 .collect(toCollection(HashSet::new));
 
+        Map<String, Long> collect1 = pageList
+                .stream()
+                .map(Page::getAppName)
+                .map(appName -> appName.split(","))
+                .flatMap(Arrays::stream)
+                .collect(groupingBy(Function.identity(), counting()));
 
     }
 
