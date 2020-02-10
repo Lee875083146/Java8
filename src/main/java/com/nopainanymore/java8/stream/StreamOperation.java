@@ -5,14 +5,13 @@ import com.nopainanymore.java8.entity.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.nopainanymore.java8.entity.Student.FEMALE;
 import static com.nopainanymore.java8.entity.Student.MALE;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * @author lw875
@@ -178,6 +177,13 @@ public class StreamOperation {
                 .filter(student -> "a1".equals(student.getName()))
                 .findAny();
         log.info("StreamOperation- anyMatch- any:{}", any.orElse(new Student()));
+    }
+
+    private static void groupingBy(List<Student> students) {
+        Map<Integer, Set<Integer>> collect = students.stream()
+                .collect(Collectors.groupingBy(Student::getClassId, mapping(
+                        Student::getAge, toSet())));
+        log.info("StreamOperation- groupingBy- classId - ageSet: {}", gson.toJson(collect));
     }
 
 

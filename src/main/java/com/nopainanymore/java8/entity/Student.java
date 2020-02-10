@@ -3,8 +3,6 @@ package com.nopainanymore.java8.entity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.Optional;
-
 /**
  * @author lw875
  * @create 2019-03-13 23:31
@@ -39,6 +37,4 @@ public class Student {
         this.stuId = stuId;
         this.classId = classId;
     }
-
-
 }
