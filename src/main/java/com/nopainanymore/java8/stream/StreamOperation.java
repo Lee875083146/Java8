@@ -185,6 +185,4 @@ public class StreamOperation {
                         Student::getAge, toSet())));
         log.info("StreamOperation- groupingBy- classId - ageSet: {}", gson.toJson(collect));
     }
-
-
 }
