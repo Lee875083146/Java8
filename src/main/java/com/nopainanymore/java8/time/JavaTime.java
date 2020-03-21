@@ -1,7 +1,6 @@
 package com.nopainanymore.java8.time;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
+import java.time.*;
 import java.time.temporal.TemporalAdjusters;
 
 /**
@@ -14,8 +13,12 @@ public class JavaTime {
 
 
     public static void main(String[] args) {
+
+        ZoneId.of("America/New_York");
         LocalDate localDate = LocalDate.now();
         LocalDate with = localDate.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.FRIDAY));
         System.out.println(with);
+        Duration daylightSavings = ZoneId.of(ZoneId.SHORT_IDS.get("EST")).getRules().getDaylightSavings(Instant.now());
+        System.out.println(daylightSavings);
     }
 }
